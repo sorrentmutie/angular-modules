@@ -6,6 +6,9 @@ import { HomeComponent } from './home.component';
 import { PippoComponent } from './pippo/pippo.component';
 import { TopolinoComponent } from './topolino.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { HomeService } from './services/home.service';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FirstMinniInterceptor } from './interceptors/first-minni.interceptor';
 
 
 @NgModule({
@@ -17,11 +20,16 @@ import { SharedModule } from 'src/app/shared/shared.module';
   imports: [
     CommonModule,
     HomeRoutingModule,
-    SharedModule
+    SharedModule.puppapero(513),
+    // HttpClientModule
   ],
   exports:[
     HomeComponent,
     TopolinoComponent
+  ],
+  providers:[
+    HomeService,
+    // { provide: HTTP_INTERCEPTORS , useClass:FirstMinniInterceptor, multi: true },
   ]
 })
 export class HomeModule { }

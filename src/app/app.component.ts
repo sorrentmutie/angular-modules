@@ -1,3 +1,4 @@
+// import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'demo-modules';
+
+  constructor(){//private httpClient: HttpClient
+    // httpClient.get("https://randomuser.me/api").subscribe((response)=>{console.log(response)});
+  }
 }

@@ -1,8 +1,10 @@
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from './components/button/button.component';
 import { CardComponent } from './components/card/card.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { CounterClarabellaComponent } from './components/counter-clarabella/counter-clarabella.component';
+import { CounterClarabellaService } from './services/counter-clarabella.service';
 
 
 
@@ -10,7 +12,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
   declarations: [
     ButtonComponent,
     CardComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    CounterClarabellaComponent
   ],
   imports: [
     CommonModule
@@ -18,7 +21,15 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
   exports:[
     ButtonComponent,
     CardComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    CounterClarabellaComponent
   ]
 })
-export class SharedModule { }
+export class SharedModule {
+  static puppapero(valoreIniziale:number = 0):ModuleWithProviders<SharedModule>{
+    return {
+      ngModule:SharedModule,
+      providers:[{ provide: CounterClarabellaService , useFactory:()=>new CounterClarabellaService(valoreIniziale)}]
+    };
+  }
+}
